@@ -2,7 +2,9 @@
 
 An immersive 3D space exploration website built with React, Three.js, and TypeScript. Travel through a fictional star system, discover planets, explore celestial phenomena, and uncover the story of an unknown universe.
 
-![AETHER COSMOS - 3D Universe](https://image.qwenlm.ai/generated-images/dc01055d-0883-4c49-baba-11496b55bfd1/_result.png)
+## 🎬 Preview
+
+*Run the application to see the full 3D experience with realistic procedural planets, custom GLSL shaders, and cinematic lighting.*
 
 ## ✨ Features
 
@@ -334,17 +336,17 @@ This is a creative demonstration project. All planetary data and world-building 
 
 ## 📸 Screenshots
 
-### 3D Universe Overview
-![Universe View](https://image.qwenlm.ai/generated-images/dc01055d-0883-4c49-baba-11496b55bfd1/_result.png)
+To capture screenshots of the application:
 
-### Planet Information Panel
-![Planet Details](https://image.qwenlm.ai/generated-images/f7c477c0-5934-4682-8a33-57b5405c695a/_result.png)
+1. **3D Universe Overview**: After entering the universe, you'll see the complete star system with the central blue giant star and 5 procedurally-rendered planets orbiting at realistic distances. Each planet has unique surface textures, atmospheric effects, and proper lighting.
 
-### Observatory - Gravitational Lensing
-![Observatory](https://image.qwenlm.ai/generated-images/2dee9c85-9900-49ca-a9a1-603b94f571f9/_result.png)
+2. **Planet Information Panel**: Click any planet to see the detailed information panel slide in from the right, showing the planet's classification, description, surface conditions, composition, unique phenomena, moons, and discovery timeline.
 
-### Intro Screen
-![Intro](https://image.qwenlm.ai/generated-images/fbd0b598-e5fc-472e-978a-cccf08baabc1/_result.png)
+3. **Observatory**: Access the Observatory from the bottom navigation to see interactive simulations of gravitational lensing, pulsars, and nebulae with real-time parameter controls.
+
+4. **Intro Screen**: The elegant landing page features the "AETHER COSMOS" title with a cinematic space background and "Enter the Universe" button.
+
+*Tip: Use browser developer tools to capture screenshots at different viewport sizes to see the responsive design in action.*
 
 ---
 
