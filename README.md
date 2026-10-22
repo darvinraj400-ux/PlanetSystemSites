@@ -4,7 +4,7 @@ An immersive 3D space exploration website built with React, Three.js, and TypeSc
 
 ## 🎬 Preview
 
-![AETHER COSMOS - 3D Universe Overview](/images/universe-overview.svg)
+![AETHER COSMOS - 3D Universe Overview](./public/images/universe-overview.svg)
 
 *The complete star system with the central blue giant star and 5 procedurally-rendered planets*
 
@@ -339,22 +339,22 @@ This is a creative demonstration project. All planetary data and world-building 
 ## 📸 Screenshots
 
 ### 3D Universe Overview
-![3D Universe](/images/universe-overview.svg)
+![3D Universe](./public/images/universe-overview.svg)
 
 *The complete star system with realistic procedural planets, custom GLSL shaders, and cinematic lighting*
 
 ### Planet Information Panel
-![Planet Details](/images/planet-detail.svg)
+![Planet Details](./public/images/planet-detail.svg)
 
 *Detailed planet discovery interface with classification, surface conditions, phenomena, and discovery timeline*
 
 ### The Observatory
-![Observatory](/images/observatory.svg)
+![Observatory](./public/images/observatory.svg)
 
 *Interactive gravitational lensing simulation with real-time parameter controls*
 
 ### Intro Screen
-![Intro](/images/intro-screen.svg)
+![Intro](./public/images/intro-screen.svg)
 
 *Cinematic landing page with elegant typography and atmospheric space background*
 
