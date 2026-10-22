@@ -152,7 +152,7 @@ export function StarAtlas({ isActive, selectedPlanet, onSelectPlanet, onClose }:
 
             {/* Orbital paths */}
             {planets.map((planet) => {
-              const orbitRadius = (planet.orbitRadius / 20) * 35;
+              const orbitRadius = (planet.orbitRadius / 45) * 40;
               return (
                 <circle
                   key={`orbit-${planet.id}`}

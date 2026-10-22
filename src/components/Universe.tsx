@@ -65,8 +65,8 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
           enablePan={true}
           enableZoom={true}
           enableRotate={true}
-          minDistance={4}
-          maxDistance={80}
+          minDistance={5}
+          maxDistance={120}
           maxPolarAngle={Math.PI * 0.85}
           minPolarAngle={Math.PI * 0.1}
           enableDamping
@@ -83,7 +83,7 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
 export function Universe({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: UniverseProps) {
   return (
     <Canvas
-      camera={{ position: [0, 12, 30], fov: 55, near: 0.1, far: 500 }}
+      camera={{ position: [0, 25, 60], fov: 55, near: 0.1, far: 600 }}
       gl={{
         antialias: true,
         alpha: false,
@@ -96,7 +96,7 @@ export function Universe({ selectedPlanet, onSelectPlanet, isOverview, controlsE
       onPointerMissed={() => onSelectPlanet(null)}
     >
       <color attach="background" args={['#020008']} />
-      <fog attach="fog" args={['#020008', 70, 200]} />
+      <fog attach="fog" args={['#020008', 100, 250]} />
       <Scene
         selectedPlanet={selectedPlanet}
         onSelectPlanet={onSelectPlanet}

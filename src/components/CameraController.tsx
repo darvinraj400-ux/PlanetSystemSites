@@ -35,7 +35,7 @@ export function CameraController({ selectedPlanet, isOverview, time }: CameraCon
       lerpSpeed.current = 0.02;
     } else {
       // Overview position - cinematic angle
-      targetPos.current.set(0, 12, 30);
+      targetPos.current.set(0, 25, 60);
       targetLook.current.set(0, 0, 0);
       lerpSpeed.current = 0.015;
     }
