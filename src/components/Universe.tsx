@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import * as THREE from 'three';
 import { StarField, Nebula, CosmicDust } from './StarField';
 import { PlanetMesh, CentralStar, OrbitPaths } from './PlanetMesh';
 import { CameraController } from './CameraController';
@@ -33,15 +34,21 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
       <CameraController selectedPlanet={selectedPlanet} isOverview={isOverview} time={time} />
       <TimeTracker onTimeUpdate={handleTimeUpdate} />
       
-      <ambientLight intensity={0.08} />
+      {/* Very subtle ambient for fill */}
+      <ambientLight intensity={0.03} color="#1a1a3a" />
       
-      <StarField count={2500} />
+      {/* Background elements */}
+      <StarField count={4000} />
       <Nebula />
-      <CosmicDust count={400} />
+      <CosmicDust count={600} />
       
+      {/* Central star with realistic shader */}
       <CentralStar />
+      
+      {/* Orbit paths */}
       <OrbitPaths planets={planets} />
       
+      {/* Planets with custom shaders */}
       {planets.map((planet) => (
         <PlanetMesh
           key={planet.id}
@@ -52,12 +59,13 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
         />
       ))}
 
+      {/* Camera controls */}
       {controlsEnabled && (
         <OrbitControls
           enablePan={true}
           enableZoom={true}
           enableRotate={true}
-          minDistance={5}
+          minDistance={4}
           maxDistance={80}
           maxPolarAngle={Math.PI * 0.85}
           minPolarAngle={Math.PI * 0.1}
@@ -65,6 +73,7 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
           dampingFactor={0.05}
           rotateSpeed={0.5}
           zoomSpeed={0.8}
+          panSpeed={0.5}
         />
       )}
     </>
@@ -74,14 +83,20 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
 export function Universe({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: UniverseProps) {
   return (
     <Canvas
-      camera={{ position: [0, 15, 35], fov: 60, near: 0.1, far: 500 }}
-      gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
+      camera={{ position: [0, 12, 30], fov: 55, near: 0.1, far: 500 }}
+      gl={{
+        antialias: true,
+        alpha: false,
+        powerPreference: 'high-performance',
+        toneMapping: THREE.ACESFilmicToneMapping,
+        toneMappingExposure: 1.2,
+      }}
       dpr={[1, 1.5]}
-      style={{ background: '#030010' }}
+      style={{ background: '#020008' }}
       onPointerMissed={() => onSelectPlanet(null)}
     >
-      <color attach="background" args={['#030010']} />
-      <fog attach="fog" args={['#030010', 60, 200]} />
+      <color attach="background" args={['#020008']} />
+      <fog attach="fog" args={['#020008', 70, 200]} />
       <Scene
         selectedPlanet={selectedPlanet}
         onSelectPlanet={onSelectPlanet}
