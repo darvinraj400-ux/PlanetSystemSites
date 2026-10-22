@@ -1,0 +1,87 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="nebulaGlow1" cx="30%" cy="40%">
+      <stop offset="0%" style="stop-color:#2a0a4a;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#030010;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="nebulaGlow2" cx="70%" cy="60%">
+      <stop offset="0%" style="stop-color:#0a1a4a;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#030010;stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#1a0a3a;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#0a0520;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#030010;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#030010"/>
+  
+  <!-- Nebula effects -->
+  <ellipse cx="576" cy="432" rx="500" ry="400" fill="url(#nebulaGlow1)"/>
+  <ellipse cx="1344" cy="648" rx="450" ry="350" fill="url(#nebulaGlow2)"/>
+  <ellipse cx="960" cy="540" rx="600" ry="500" fill="url(#centerGlow)"/>
+  
+  <!-- Stars scattered across the background -->
+  <circle cx="120" cy="180" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="240" cy="320" r="1" fill="#aaccff" opacity="0.5"/>
+  <circle cx="380" cy="150" r="1.2" fill="#ffffff" opacity="0.7"/>
+  <circle cx="520" cy="280" r="1" fill="#ffddaa" opacity="0.6"/>
+  <circle cx="680" cy="200" r="1.5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="820" cy="340" r="1" fill="#aaccff" opacity="0.7"/>
+  <circle cx="960" cy="180" r="1.2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="1100" cy="300" r="1" fill="#ffddaa" opacity="0.5"/>
+  <circle cx="1240" cy="220" r="1.5" fill="#ffffff" opacity="0.7"/>
+  <circle cx="1380" cy="360" r="1" fill="#aaccff" opacity="0.6"/>
+  <circle cx="1520" cy="240" r="1.2" fill="#ffffff" opacity="0.5"/>
+  <circle cx="1660" cy="380" r="1" fill="#ffffff" opacity="0.7"/>
+  <circle cx="1800" cy="200" r="1.5" fill="#aaccff" opacity="0.6"/>
+  
+  <circle cx="180" cy="540" r="1" fill="#ffffff" opacity="0.5"/>
+  <circle cx="320" cy="680" r="1.5" fill="#aaccff" opacity="0.6"/>
+  <circle cx="460" cy="580" r="1" fill="#ffffff" opacity="0.7"/>
+  <circle cx="600" cy="720" r="1.2" fill="#ffddaa" opacity="0.5"/>
+  <circle cx="740" cy="620" r="1" fill="#ffffff" opacity="0.6"/>
+  <circle cx="880" cy="760" r="1.5" fill="#aaccff" opacity="0.7"/>
+  <circle cx="1020" cy="640" r="1" fill="#ffffff" opacity="0.5"/>
+  <circle cx="1160" cy="780" r="1.2" fill="#ffddaa" opacity="0.6"/>
+  <circle cx="1300" cy="660" r="1" fill="#ffffff" opacity="0.7"/>
+  <circle cx="1440" cy="800" r="1.5" fill="#aaccff" opacity="0.5"/>
+  <circle cx="1580" cy="700" r="1" fill="#ffffff" opacity="0.6"/>
+  <circle cx="1720" cy="840" r="1.2" fill="#ffffff" opacity="0.7"/>
+  
+  <circle cx="200" cy="900" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="400" cy="950" r="1" fill="#aaccff" opacity="0.5"/>
+  <circle cx="600" cy="880" r="1.2" fill="#ffddaa" opacity="0.7"/>
+  <circle cx="800" cy="960" r="1" fill="#ffffff" opacity="0.6"/>
+  <circle cx="1000" cy="900" r="1.5" fill="#ffffff" opacity="0.5"/>
+  <circle cx="1200" cy="980" r="1" fill="#aaccff" opacity="0.7"/>
+  <circle cx="1400" cy="920" r="1.2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="1600" cy="1000" r="1" fill="#ffddaa" opacity="0.5"/>
+  <circle cx="1800" cy="940" r="1.5" fill="#ffffff" opacity="0.7"/>
+  
+  <!-- Center content area -->
+  <g transform="translate(960, 540)">
+    <!-- Subtitle -->
+    <text x="0" y="-120" font-family="monospace" font-size="12" fill="#ffffff" opacity="0.3" text-anchor="middle" letter-spacing="3">A JOURNEY INTO THE UNKNOWN</text>
+    
+    <!-- Main title -->
+    <text x="0" y="-40" font-family="system-ui" font-size="72" fill="#ffffff" opacity="0.9" text-anchor="middle" font-weight="200" letter-spacing="8">AETHER</text>
+    <text x="0" y="40" font-family="system-ui" font-size="72" fill="#aaccff" opacity="0.7" text-anchor="middle" font-weight="200" letter-spacing="8">COSMOS</text>
+    
+    <!-- Description -->
+    <text x="0" y="120" font-family="system-ui" font-size="16" fill="#ffffff" opacity="0.4" text-anchor="middle">
+      <tspan x="0" dy="0">Beyond the edge of known space lies an uncharted star system.</tspan>
+      <tspan x="0" dy="24">Five worlds await discovery, each holding secrets older than memory itself.</tspan>
+    </text>
+    
+    <!-- Enter button -->
+    <rect x="-120" y="200" width="240" height="50" rx="25" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.2"/>
+    <rect x="-120" y="200" width="240" height="50" rx="25" fill="url(#centerGlow)" opacity="0.3"/>
+    <text x="0" y="232" font-family="system-ui" font-size="14" fill="#ffffff" opacity="0.8" text-anchor="middle" letter-spacing="2">Enter the Universe</text>
+    
+    <!-- Footer note -->
+    <text x="0" y="320" font-family="monospace" font-size="10" fill="#ffffff" opacity="0.2" text-anchor="middle">✦ Fictional universe — all data is world-building ✦</text>
+  </g>
+</svg>

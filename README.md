@@ -4,7 +4,9 @@ An immersive 3D space exploration website built with React, Three.js, and TypeSc
 
 ## 🎬 Preview
 
-*Run the application to see the full 3D experience with realistic procedural planets, custom GLSL shaders, and cinematic lighting.*
+![AETHER COSMOS - 3D Universe Overview](/images/universe-overview.svg)
+
+*The complete star system with the central blue giant star and 5 procedurally-rendered planets*
 
 ## ✨ Features
 
@@ -336,17 +338,25 @@ This is a creative demonstration project. All planetary data and world-building 
 
 ## 📸 Screenshots
 
-To capture screenshots of the application:
+### 3D Universe Overview
+![3D Universe](/images/universe-overview.svg)
 
-1. **3D Universe Overview**: After entering the universe, you'll see the complete star system with the central blue giant star and 5 procedurally-rendered planets orbiting at realistic distances. Each planet has unique surface textures, atmospheric effects, and proper lighting.
+*The complete star system with realistic procedural planets, custom GLSL shaders, and cinematic lighting*
 
-2. **Planet Information Panel**: Click any planet to see the detailed information panel slide in from the right, showing the planet's classification, description, surface conditions, composition, unique phenomena, moons, and discovery timeline.
+### Planet Information Panel
+![Planet Details](/images/planet-detail.svg)
 
-3. **Observatory**: Access the Observatory from the bottom navigation to see interactive simulations of gravitational lensing, pulsars, and nebulae with real-time parameter controls.
+*Detailed planet discovery interface with classification, surface conditions, phenomena, and discovery timeline*
 
-4. **Intro Screen**: The elegant landing page features the "AETHER COSMOS" title with a cinematic space background and "Enter the Universe" button.
+### The Observatory
+![Observatory](/images/observatory.svg)
 
-*Tip: Use browser developer tools to capture screenshots at different viewport sizes to see the responsive design in action.*
+*Interactive gravitational lensing simulation with real-time parameter controls*
+
+### Intro Screen
+![Intro](/images/intro-screen.svg)
+
+*Cinematic landing page with elegant typography and atmospheric space background*
 
 ---
 
