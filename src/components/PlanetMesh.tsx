@@ -32,6 +32,14 @@ interface PlanetMeshProps {
   time: number;
 }
 
+// Helper to convert hex color to vec3
+const hexToVec3 = (hex: string): THREE.Vector3 => {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  return new THREE.Vector3(r, g, b);
+};
+
 export function PlanetMesh({ planet, isSelected, onSelect, time }: PlanetMeshProps) {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
@@ -41,42 +49,37 @@ export function PlanetMesh({ planet, isSelected, onSelect, time }: PlanetMeshPro
 
   const planetType = planetTypeMap[planet.id] ?? 0;
 
-  // Parse hex colors to vec3
-  const hexToVec3 = (hex: string): [number, number, number] => {
-    const r = parseInt(hex.slice(1, 3), 16) / 255;
-    const g = parseInt(hex.slice(3, 5), 16) / 255;
-    const b = parseInt(hex.slice(5, 7), 16) / 255;
-    return [r, g, b];
-  };
-
   const color1 = hexToVec3(planet.color);
   const emissiveColor = hexToVec3(planet.emissiveColor);
   const atmosphereColor = hexToVec3(planet.atmosphereColor);
 
   // Planet shader uniforms
   const planetUniforms = useMemo(() => ({
-    uColor1: { value: new THREE.Vector3(...color1) },
-    uColor2: { value: new THREE.Vector3(...emissiveColor) },
-    uColor3: { value: new THREE.Vector3(...atmosphereColor) },
+    uColor1: { value: color1.clone() },
+    uColor2: { value: emissiveColor.clone() },
+    uColor3: { value: atmosphereColor.clone() },
     uTime: { value: 0 },
     uNoiseScale: { value: 1.0 },
     uNoiseStrength: { value: 1.0 },
     uPlanetType: { value: planetType },
-    uEmissiveStrength: { value: planet.id === 'nyx' ? 1.5 : 0.3 },
-    uLightDir: { value: new THREE.Vector3(0, 0, 0) }, // Will be updated each frame
+    uEmissiveStrength: { value: planet.id === 'nyx' ? 1.2 : 0.3 },
+    uLightDir: { value: new THREE.Vector3(1, 0, 0) },
+    uLightColor: { value: new THREE.Vector3(0.7, 0.8, 1.0) },
+    uLightIntensity: { value: 1.0 },
   }), [planetType]);
 
   const atmosphereUniforms = useMemo(() => ({
-    uAtmosphereColor: { value: new THREE.Vector3(...atmosphereColor) },
-    uIntensity: { value: planet.id === 'vesper' ? 1.2 : 0.8 },
-    uLightDir: { value: new THREE.Vector3(0, 0, 0) },
+    uAtmosphereColor: { value: atmosphereColor.clone() },
+    uIntensity: { value: planet.id === 'vesper' ? 1.0 : 0.7 },
+    uLightDir: { value: new THREE.Vector3(1, 0, 0) },
   }), []);
 
   const ringUniforms = useMemo(() => ({
-    uRingColor: { value: new THREE.Vector3(...hexToVec3(planet.ringColor || '#aaaaaa')) },
+    uRingColor: { value: hexToVec3(planet.ringColor || '#aaaaaa') },
     uInnerRadius: { value: planet.size * 1.6 },
     uOuterRadius: { value: planet.size * 2.4 },
     uTime: { value: 0 },
+    uLightDir: { value: new THREE.Vector3(1, 0, 0) },
   }), []);
 
   const orbitAngle = time * planet.orbitSpeed * 100;
@@ -98,12 +101,26 @@ export function PlanetMesh({ planet, isSelected, onSelect, time }: PlanetMeshPro
       ringMeshRef.current.rotation.z += 0.0005;
     }
 
-    // Update light direction (from star at origin)
-    const lightDir = new THREE.Vector3(-x, 0, -z).normalize();
+    // Calculate light direction in WORLD SPACE
+    // Light comes from the star at origin (0,0,0), pointing toward the planet
+    // So the direction FROM planet TO light is (0-x, 0-0, 0-z) = (-x, 0, -z)
+    const lightDir = new THREE.Vector3(-x, 0, -z);
+    
+    // Calculate distance-based light intensity (inverse square law, simplified)
+    const distance = lightDir.length();
+    const intensity = Math.min(1.0, 15.0 / (distance * distance) * 10.0);
+    
+    lightDir.normalize();
+
+    // Update uniforms
     planetUniforms.uTime.value = time;
     planetUniforms.uLightDir.value.copy(lightDir);
+    planetUniforms.uLightIntensity.value = intensity;
+    
     atmosphereUniforms.uLightDir.value.copy(lightDir);
+    
     ringUniforms.uTime.value = time;
+    ringUniforms.uLightDir.value.copy(lightDir);
   });
 
   const handleClick = useCallback((e: ThreeEvent<MouseEvent>) => {
@@ -182,19 +199,6 @@ export function PlanetMesh({ planet, isSelected, onSelect, time }: PlanetMeshPro
           />
         </mesh>
       )}
-
-      {/* Cloud layer for ocean planet */}
-      {planet.id === 'vesper' && (
-        <mesh rotation={[0.1, 0, 0]}>
-          <sphereGeometry args={[planet.size * 1.01, 48, 48]} />
-          <meshStandardMaterial
-            color="#ffffff"
-            transparent
-            opacity={0.08}
-            roughness={1}
-          />
-        </mesh>
-      )}
     </group>
   );
 }
@@ -263,7 +267,7 @@ export function CentralStar() {
         <meshBasicMaterial
           color="#4466cc"
           transparent
-          opacity={0.15}
+          opacity={0.12}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
           side={THREE.BackSide}
@@ -274,7 +278,7 @@ export function CentralStar() {
         <meshBasicMaterial
           color="#2233aa"
           transparent
-          opacity={0.06}
+          opacity={0.05}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
           side={THREE.BackSide}
@@ -286,16 +290,17 @@ export function CentralStar() {
         <spriteMaterial
           color="#aaccff"
           transparent
-          opacity={0.08}
+          opacity={0.06}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
           depthTest={false}
         />
       </sprite>
 
-      {/* Lighting */}
-      <pointLight color="#aaccff" intensity={3} distance={120} decay={1.5} />
-      <pointLight color="#6688ff" intensity={1} distance={80} decay={2} />
+      {/* Note: We don't use Three.js point lights for planet illumination
+          because our custom shaders handle lighting manually.
+          The point lights here only affect any non-shader materials. */}
+      <pointLight color="#aaccff" intensity={0.5} distance={200} decay={1.5} />
     </group>
   );
 }
@@ -322,7 +327,7 @@ function OrbitRing({ radius, color }: { radius: number; color: string }) {
       points={points}
       color={color}
       transparent
-      opacity={0.12}
+      opacity={0.1}
       lineWidth={0.5}
     />
   );

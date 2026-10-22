@@ -34,8 +34,7 @@ function Scene({ selectedPlanet, onSelectPlanet, isOverview, controlsEnabled }: 
       <CameraController selectedPlanet={selectedPlanet} isOverview={isOverview} time={time} />
       <TimeTracker onTimeUpdate={handleTimeUpdate} />
       
-      {/* Very subtle ambient for fill */}
-      <ambientLight intensity={0.03} color="#1a1a3a" />
+      {/* No ambient or directional lights - our shaders handle lighting manually */}
       
       {/* Background elements */}
       <StarField count={4000} />
@@ -89,7 +88,7 @@ export function Universe({ selectedPlanet, onSelectPlanet, isOverview, controlsE
         alpha: false,
         powerPreference: 'high-performance',
         toneMapping: THREE.ACESFilmicToneMapping,
-        toneMappingExposure: 1.2,
+        toneMappingExposure: 1.0,
       }}
       dpr={[1, 1.5]}
       style={{ background: '#020008' }}
